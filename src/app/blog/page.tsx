@@ -3,8 +3,8 @@ import styles from './page.module.scss';
 
 export default function Blog() {
     return (
-        <div>
+        <section className="blog__container">
             Blog
-        </div>
+        </section>
     )
 }

@@ -3,8 +3,8 @@ import styles from './page.module.scss';
 
 export default function Contact() {
     return (
-        <div>
+        <section className="contact__container">
             Contact
-        </div>
+        </section>
     )
 }

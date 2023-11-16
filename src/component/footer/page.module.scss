@@ -1,0 +1,23 @@
+.footer {
+  padding: 20px 0;
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    span {
+      display: block;
+    }
+  }
+  &__social {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+  }
+  &__icon {
+    opacity: 0.4;
+    cursor: pointer;
+    transition: opacity .5s ease-out 0s;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

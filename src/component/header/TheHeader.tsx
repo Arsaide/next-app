@@ -35,7 +35,7 @@ const links = [
     },
 ]
 
-const Header = () => {
+const TheHeader = () => {
     return (
         <header className={styles.header}>
             <div className='header__container'>
@@ -53,4 +53,4 @@ const Header = () => {
     )
 }
 
-export default Header
+export default TheHeader

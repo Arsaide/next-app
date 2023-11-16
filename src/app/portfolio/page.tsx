@@ -3,8 +3,8 @@ import styles from './page.module.scss';
 
 export default function Portfolio() {
     return (
-        <div>
+        <section className="portfolio__container">
             Portfolio
-        </div>
+        </section>
     )
 }

@@ -3,8 +3,8 @@ import styles from './page.module.scss';
 
 export default function Dashboard() {
     return (
-        <div>
+        <section className="dashboard__container">
             Dashboard
-        </div>
+        </section>
     )
 }
