@@ -1,0 +1,28 @@
+.header {
+  padding: 50px 0 50px 0;
+
+  &__menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.logout {
+  padding: 10px 15px;
+  border: none;
+  background-color: #53c28b;
+  cursor: pointer;
+  border-radius: 3px;
+}
