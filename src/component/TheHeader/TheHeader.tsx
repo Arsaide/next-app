@@ -1,6 +1,7 @@
 'use client'
-import styles from './page.module.scss';
+import styles from './TheHeader.module.scss';
 import Link from "next/link";
+import DarkModeToggle from "@/component/DarkModeToggle/DarkModeToggle";
 
 const links = [
     {
@@ -42,6 +43,7 @@ const TheHeader = () => {
                 <nav className={styles.header__menu}>
                     <Link className={styles.logo} href='/'>MyApp</Link>
                     <div className={styles.links}>
+                        <DarkModeToggle />
                         {links.map((link) => (
                             <Link key={link.id} href={link.url}>{link.title}</Link>
                         ))}
