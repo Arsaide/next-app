@@ -1,7 +1,12 @@
-.imgContent {
-  width: 100%;
-  height: 300px;
-  position: relative;
+.about {
+  &__content {
+
+  }
+  &__imgContent {
+    width: 100%;
+    height: 300px;
+    position: relative;
+  }
 }
 
 .img {
