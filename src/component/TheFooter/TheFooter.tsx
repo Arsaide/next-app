@@ -27,7 +27,7 @@ const TheFooter = () => {
             <footer className={styles.footer}>
                 <section className="footer__container">
                     <div className={styles.footer__content}>
-                        <span>The App. Practice with Next JS, React</span>
+                        <span>NextApp. Next JS, React, TypeScript, DB, Auth JS</span>
                         <div className={styles.footer__social}>
                             {social.map((img) => (
                                 <Image

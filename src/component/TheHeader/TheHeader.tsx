@@ -2,6 +2,7 @@
 import styles from './TheHeader.module.scss';
 import Link from "next/link";
 import DarkModeToggle from "@/component/DarkModeToggle/DarkModeToggle";
+import {signOut, useSession} from "next-auth/react";
 
 const links = [
     {
@@ -36,18 +37,26 @@ const links = [
     },
 ]
 
+const handleLogoutClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    signOut();
+}
+
 const TheHeader = () => {
+    const session = useSession();
+
+    // @ts-ignore
     return (
         <header className={styles.header}>
             <div className='header__container'>
                 <nav className={styles.header__menu}>
-                    <Link className={styles.logo} href='/'>MyApp</Link>
+                    <Link className={styles.logo} href='/'>NextTestApp</Link>
                     <div className={styles.links}>
                         <DarkModeToggle />
                         {links.map((link) => (
                             <Link key={link.id} href={link.url}>{link.title}</Link>
                         ))}
-                        <button className={styles.logout} onClick={() => {console.log('Logout')}}>Logout</button>
+                        {session.status == 'authenticated' &&
+                            <button className={styles.logout} onClick={handleLogoutClick}>Logout</button>}
                     </div>
                 </nav>
             </div>
