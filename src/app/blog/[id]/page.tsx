@@ -3,7 +3,7 @@ import Image from "next/image";
 import {Metadata} from "next";
 
 async function getData(id: string) {
-    const res = await fetch(`http://localhost:3000/api/posts/${id}`, {
+    const res = await fetch(`https://next-app-p2go.vercel.app/posts/${id}`, {
         cache: "no-store",
     });
 
