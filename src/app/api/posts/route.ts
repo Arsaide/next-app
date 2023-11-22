@@ -1,9 +1,9 @@
 // @ts-ignore
 import Post from "@/models/Post.ts";
 import connect from "@/utils/db";
-import { NextResponse } from "next/server";
+import {NextRequest, NextResponse} from "next/server";
 
-export const GET = async (request: { url: string | URL; }) => {
+export const GET = async (request: NextRequest) => {
     const url = new URL(request.url);
     const username = url.searchParams.get("username");
 
