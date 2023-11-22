@@ -3,7 +3,7 @@ import Image from "next/image";
 import {Metadata} from "next";
 
 async function getData(id: string) {
-    const res = await fetch(`https://next-app-p2go.vercel.app/posts/${id}`, {
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
         cache: "no-store",
     });
 
