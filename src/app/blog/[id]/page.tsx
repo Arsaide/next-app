@@ -3,16 +3,15 @@ import Image from "next/image";
 import {Metadata} from "next";
 
 async function getData(id: string) {
-    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
-        cache: 'no-store'
-    })
+    const res = await fetch(`http://localhost:3000/api/posts/${id}`, {
+        cache: "no-store",
+    });
 
     if (!res.ok) {
-        throw new Error('Failed to fetch data')
+        throw new Error("Failed to fetch data");
     }
 
-    return res.json()
-
+    return res.json();
 }
 
 type Props = {
@@ -21,13 +20,14 @@ type Props = {
     };
 }
 
-export async function generateMetadata({ params: {id} }: Props ): Promise<Metadata> {
+export async function generateMetadata({ params: {id} }: Props ): Promise<Metadata>{
     const data = await getData(id);
-
     return {
-        title: data.title
-    }
+        title: data.title,
+        description: data.description,
+    };
 }
+
 
 const BlogId = async ({ params: {id} }: Props ) => {
     const data = await getData(id);
@@ -37,29 +37,29 @@ const BlogId = async ({ params: {id} }: Props ) => {
             <div className={styles.top}>
                 <div className={styles.info}>
                     <h1 className={styles.title}>{data.title}</h1>
-                    <p className={styles.desc}>{data.body}</p>
+                    <p className={styles.desc}>{data.description}</p>
                     <div className={styles.author}>
                         <Image
-                            src=""
-                            alt=""
+                            src={data.image}
+                            alt={data.title}
                             width={40}
                             height={40}
                             className={styles.avatar}
                         />
-                        <span className={styles.username}>username</span>
+                        <span className={styles.username}>{data.userName}</span>
                     </div>
                 </div>
                 <div className={styles.imageCont}>
                     <Image
-                        src=""
-                        alt=""
+                        src={data.image}
+                        alt={data.title}
                         fill={true}
                         className={styles.image}
                     />
                 </div>
             </div>
             <div className={styles.content}>
-                <p className={styles.text}>desc</p>
+                <p className={styles.text}>{data.content}</p>
             </div>
         </section>
     )

@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 async function getData() {
-    const res = await fetch('https://jsonplaceholder.typicode.com/posts', { cache: 'no-store' });
+    const res = await fetch('http://localhost:3000/api/posts', { cache: 'no-store' });
 
     if (!res.ok) {
         throw new Error('Failed to fetch data')
@@ -14,10 +14,10 @@ async function getData() {
 }
 
 interface Props {
-    userId: number,
-    id: number,
+    _id: number,
     title: string,
-    body: string,
+    description: string,
+    image: string,
 }
 
 export default async function Blog() {
@@ -27,10 +27,13 @@ export default async function Blog() {
         <section className="blog__container">
             <div className={styles.blog__content}>
                 {data.map((item: Props) => (
-                    <Link href={`/blog/${item.id}`} className={styles.cont} key={item.id}>
+                    <Link
+                        href={`/blog/${item._id}`}
+                        className={styles.cont}
+                        key={item._id}>
                         <div className={styles.imageContainer}>
                             <Image
-                                src='https://img.freepik.com/free-vector/illustration-of-gallery-icon_53876-27002.jpg?w=826&t=st=1700256486~exp=1700257086~hmac=d739b1599c4eb6ef0a5e685002d35539bf16bcb929b9e0ab617c0a9dd008841a'
+                                src={item.image}
                                 alt='img'
                                 width={400}
                                 height={250}
@@ -39,7 +42,7 @@ export default async function Blog() {
                         </div>
                         <div className={styles.content}>
                             <h2 className={styles.title}>{item.title}</h2>
-                            <p className={styles.desc}>{item.body}</p>
+                            <p className={styles.desc}>{item.description}</p>
                         </div>
                     </Link>
                 ))}
