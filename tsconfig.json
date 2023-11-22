@@ -22,8 +22,14 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts",
-    "src/app/about/page"
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/about/page",
+    "node_modules/bcryptjs/src/bcrypt.js",
+    "node_modules/bcryptjs/src/bcrypt.js"
   ],
   "exclude": ["node_modules"]
 }
