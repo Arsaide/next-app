@@ -1,42 +1,50 @@
 import styles from './page.module.scss';
 import Button from "@/component/Button/Button";
 import Image from "next/image";
+import { items } from "@/app/portfolio/[category]/data";
+import {notFound} from "next/navigation";
+
+interface Items {
+    [key: string]: typeof items;
+    [key: number]: typeof items;
+}
+
+const getData = (cat: string | number) => {
+    // @ts-ignore
+    const data = items[cat];
+
+    if (data) {
+        return data;
+    } else {
+        return notFound();
+    }
+};
 
 const Category = ({params}: any) => {
+    const data = getData(params.category);
+
     return (
         <section className="category__container">
             <div className="category__content">
                 <h1 className={styles.catTitle}>{params.category}</h1>
-                <div className={styles.item} key={1}>
-                    <div className={styles.content}>
-                        <h1 className={styles.title}>test</h1>
-                        <p className={styles.desc}>desc</p>
-                        <Button text="See More" url="#" />
+
+                {data.map((item: { id: number; title: string; desc: string; image: string }) => (
+                    <div className={styles.item} key={item.id}>
+                        <div className={styles.content}>
+                            <h1 className={styles.title}>{item.title}</h1>
+                            <p className={styles.desc}>{item.desc}</p>
+                            <Button text="See More" url="#" />
+                        </div>
+                        <div className={styles.imgContent}>
+                            <Image
+                                src={item.image}
+                                className={styles.img}
+                                fill={true}
+                                alt={item.title}
+                            />
+                        </div>
                     </div>
-                    <div className={styles.imgContent}>
-                        <Image
-                            src="https://img.freepik.com/free-photo/robot-handshake-human-background-futuristic-digital-age_53876-129770.jpg?w=1380&t=st=1686056951~exp=1686057551~hmac=5da557bfff0192720a1dfa7608b353322afcbfc038886c891ba296fd8fa7e97b"
-                            className={styles.img}
-                            fill={true}
-                            alt=""
-                        />
-                    </div>
-                </div>
-                <div className={styles.item} key={2}>
-                    <div className={styles.content}>
-                        <h1 className={styles.title}>test</h1>
-                        <p className={styles.desc}>desc</p>
-                        <Button text="See More" url="#" />
-                    </div>
-                    <div className={styles.imgContent}>
-                        <Image
-                            src="https://img.freepik.com/free-photo/robot-handshake-human-background-futuristic-digital-age_53876-129770.jpg?w=1380&t=st=1686056951~exp=1686057551~hmac=5da557bfff0192720a1dfa7608b353322afcbfc038886c891ba296fd8fa7e97b"
-                            className={styles.img}
-                            fill={true}
-                            alt=""
-                        />
-                    </div>
-                </div>
+                ))}
             </div>
         </section>
     )

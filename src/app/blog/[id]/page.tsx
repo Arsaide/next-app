@@ -3,7 +3,9 @@ import Image from "next/image";
 import {Metadata} from "next";
 
 async function getData(id: string) {
-    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, { cache: 'no-store' })
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+        cache: 'no-store'
+    })
 
     if (!res.ok) {
         throw new Error('Failed to fetch data')
