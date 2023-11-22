@@ -2,8 +2,12 @@
 import styles from './page.module.scss';
 import {useState, useEffect} from "react";
 import useSWR from "swr";
+import {useSession} from "next-auth/react";
 
 export default function Dashboard() {
+    const session = useSession()
+    console.log(session)
+
     // const [data, setData] = useState([]);
     // const [error, setError] = useState(false);
     // const [isLoading, setIsLoading] = useState(true)
