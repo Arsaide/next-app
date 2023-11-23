@@ -32,8 +32,8 @@ const links = [
     },
     {
         id: 6,
-        title: 'Dashboard',
-        url: '/dashboard',
+        title: 'Login',
+        url: '/dashboard/login'
     },
 ]
 
@@ -44,6 +44,21 @@ const handleLogoutClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 const TheHeader = () => {
     const session = useSession();
 
+    const updatedLinks = [...links];
+
+    if (session?.status === 'authenticated') {
+        const indexToRemove = updatedLinks.findIndex(link => link.id === 6);
+        if (indexToRemove !== -1) {
+            updatedLinks.splice(indexToRemove, 1);
+        }
+        updatedLinks.push({ id: 7, title: 'Dashboard', url: '/dashboard' });
+    } else {
+        const indexToRemove = updatedLinks.findIndex(link => link.id === 7);
+        if (indexToRemove !== -1) {
+            updatedLinks.splice(indexToRemove, 1);
+        }
+    }
+
     // @ts-ignore
     return (
         <header className={styles.header}>
@@ -52,7 +67,7 @@ const TheHeader = () => {
                     <Link className={styles.logo} href='/'>NextTestApp</Link>
                     <div className={styles.links}>
                         <DarkModeToggle />
-                        {links.map((link) => (
+                        {updatedLinks.map((link) => (
                             <Link key={link.id} href={link.url}>{link.title}</Link>
                         ))}
                         {session.status == 'authenticated' &&
